@@ -11,7 +11,7 @@ const LEVELS = {
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -66,17 +66,30 @@ const Character = function () {
 }
 
 const EnemyMaker = function () {
-  this.y = 0
-  this.x = 0
+  this.y = 9
+  this.x = 11
   this.strength = 1
   this.health = 5
+
+  this.StartPosition = function () {
+    LEVELS.L1[this.y][this.x] = 3
+  }
 }
 
 const combat = function () {
   clearInterval(gameTimer)
   console.log('pelea')
+  char.health -= enemy.strength
+  enemy.health -= char.strength
+  console.log(char.health, enemy.health)
+  if(enemy.health === 0){
+    LEVELS.L1[enemy.y][enemy.x] = 1
+    console.log(LEVELS.L1[enemy.y][enemy.x])
+    gameTimer = setInterval(game, 300)
+  }
 }
 const char = new Character()
+const enemy = new EnemyMaker()
 
 function drawBoard () {
   LEVELS.L1.forEach((row, r) => {
@@ -86,15 +99,18 @@ function drawBoard () {
 
       if (LEVELS.L1[r][c] === 1) {
         cellHTML.classList.remove('character')
+        cellHTML.classList.remove('enemy')
         cellHTML.classList.add('road')
       }
 
       if (LEVELS.L1[r][c] === 2) {
         cellHTML.classList.remove('road')
+        cellHTML.classList.remove('enemy')
         cellHTML.classList.add('character')
       }
 
       if (LEVELS.L1[r][c] === 3) {
+        cellHTML.classList.remove('character')
         cellHTML.classList.remove('road')
         cellHTML.classList.add('enemy')
       }
@@ -109,4 +125,5 @@ function game () {
 
 // ejecucion
 char.StartPosition()
-const gameTimer = setInterval(game, 300)
+enemy.StartPosition()
+let gameTimer = setInterval(game, 300)
