@@ -1,0 +1,18 @@
+.board {
+  background-color: darkgreen;
+  margin-left: 3vw;
+}
+
+td {
+  width: 20px;
+  height: 20px;
+  border: 1px solid green;
+}
+
+.road {
+  background-color: rgb(206, 126, 50);
+}
+
+.character {
+  background-color: black;
+}
