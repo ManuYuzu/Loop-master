@@ -19,3 +19,15 @@ td {
 .enemy{
   background-color: red;
 }
+
+.pause {
+  background-color: #DD3366;
+  color: white;
+  border-radius: 20px;
+}
+
+.start {
+  background-color:#bb33dd;
+  color: white;
+  border-radius: 20px;
+}
