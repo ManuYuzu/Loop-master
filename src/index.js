@@ -68,8 +68,8 @@ const Character = function () {
 const EnemyMaker = function () {
   this.y = 9
   this.x = 11
-  this.strength = 1
-  this.health = 5
+  this.strength = 50
+  this.health = 15
 
   this.StartPosition = function () {
     LEVELS.L1[this.y][this.x] = 3
@@ -78,16 +78,23 @@ const EnemyMaker = function () {
 
 const combat = function () {
   clearInterval(gameTimer)
-  console.log('pelea')
-  char.health -= enemy.strength
-  enemy.health -= char.strength
-  console.log(char.health, enemy.health)
-  if(enemy.health === 0){
-    LEVELS.L1[enemy.y][enemy.x] = 1
-    console.log(LEVELS.L1[enemy.y][enemy.x])
-    gameTimer = setInterval(game, 300)
-  }
+
+  const combatTimer = setInterval(function () {
+    char.health -= enemy.strength
+    enemy.health -= char.strength
+    if (enemy.health <= 0) {
+      LEVELS.L1[enemy.y][enemy.x] = 1
+      gameTimer = setInterval(game, 300)
+      clearInterval(combatTimer)
+    }
+     if(char.health <= 0) {
+      window.alert('GAME OVER')
+
+    }
+  }, 1000)
+
 }
+
 const char = new Character()
 const enemy = new EnemyMaker()
 
