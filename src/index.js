@@ -25,15 +25,28 @@ let LEVELS = {
 let Character = function () {
   this.y = 5
   this.x = 8
+  this.previousY = 0
+  this.previousX = 0
 
   this.StartPosition = function () {
     LEVELS.L1[this.y][this.x] = 2
   }
+
+  this.moveCharacter = function () {
+    LEVELS.L1[this.y][this.x] = 1
+    if (LEVELS.L1[this.y][this.x + 1] === 1 && this.x + 1 !== this.previousX) {
+      console.log(this.x)
+      this.previousY = this.y
+      this.previousX = this.x
+      this.x++
+    }
+    LEVELS.L1[this.y][this.x] = 2
+    console.log(this.previousY, this.previousX)
+    console.log(this.y, this.x)
+  }
 }
 
 let char = new Character()
-
-
 
 function drawBoard () {
   LEVELS.L1.forEach((row, r) => {
@@ -42,16 +55,24 @@ function drawBoard () {
       let cellHTML = rowHTML.querySelector(`.col${c + 1}`)
 
       if (LEVELS.L1[r][c] === 1) {
+        cellHTML.classList.remove('character')
         cellHTML.classList.add('road')
       }
 
       if (LEVELS.L1[r][c] === 2) {
+        cellHTML.classList.remove('road')
         cellHTML.classList.add('character')
       }
     })
   })
 }
 
+function game () {
+  drawBoard()
+  char.moveCharacter()
+}
+
+let gameTimer = setInterval(game, 1000)
+
 char.StartPosition()
-//moveCharacter()
-drawBoard()
+game()
