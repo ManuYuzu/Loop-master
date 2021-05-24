@@ -35,10 +35,21 @@ let Character = function () {
   this.moveCharacter = function () {
     LEVELS.L1[this.y][this.x] = 1
     if (LEVELS.L1[this.y][this.x + 1] === 1 && this.x + 1 !== this.previousX) {
-      console.log(this.x)
       this.previousY = this.y
       this.previousX = this.x
       this.x++
+    } else if (LEVELS.L1[this.y + 1][this.x] === 1 && this.y + 1 !== this.previousY) {
+      this.previousY = this.y
+      this.previousX = this.x
+      this.y++
+    } else if (LEVELS.L1[this.y][this.x - 1] === 1 && this.x - 1 !== this.previousX) {
+      this.previousY = this.y
+      this.previousX = this.x
+      this.x--
+    } else if (LEVELS.L1[this.y - 1][this.x] === 1 && this.y - 1 !== this.previousY) {
+      this.previousY = this.y
+      this.previousX = this.x
+      this.y--
     }
     LEVELS.L1[this.y][this.x] = 2
     console.log(this.previousY, this.previousX)
@@ -72,7 +83,7 @@ function game () {
   char.moveCharacter()
 }
 
-let gameTimer = setInterval(game, 1000)
+let gameTimer = setInterval(game, 300)
 
 char.StartPosition()
 game()
