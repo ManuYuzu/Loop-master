@@ -1,12 +1,29 @@
+body {
+  background-color: rgb(173, 151, 124);
+}
+
+h1 {
+  text-align: center;
+}
+
+.main-wrapper {
+  height: 374px;
+  position: relative;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
 .board {
   background-color: darkgreen;
-  margin-left: 3vw;
+  /* margin-left: 5vw;
+  margin-right: 5vw;
+  margin-bottom: 5vw; */
+  border-collapse: collapse;
 }
 
 td {
   width: 20px;
   height: 20px;
-  border: 1px solid green;
 }
 
 .road {
@@ -30,4 +47,42 @@ td {
   background-color:#bb33dd;
   color: white;
   border-radius: 20px;
+}
+
+.game-wrapper {
+  display: inline-block;
+}
+
+.aside-wrapper {
+  width: 300px;
+  height: 374px;
+  /* margin-top: 0px; */
+  display: inline-block;
+  background-color: silver;
+  position: absolute;
+  margin-left: 4vw;
+}
+
+.info-char {
+  height: 50%;
+  background-color: #bb33dd;
+}
+
+.inventory {
+  height: 50%;
+  background-color: aqua;
+}
+
+.bottom-wrapper {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 3vw;
+  height: 60px;
+  background-color: silver;
+}
+
+.footer-wrapper {
+  margin-top: 2vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }

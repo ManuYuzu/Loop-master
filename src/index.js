@@ -5,12 +5,15 @@ const combat = function () {
   clearInterval(gameTimer)
   combatTimer = setInterval(function () {
     enemy.health -= char.strength
+    console.log('puñalah')
+    console.log(enemy.health)
     if (enemy.health <= 0) {
       LEVELS.L1[enemy.y][enemy.x] = 1
       gameTimer = setInterval(game, 300)
       clearInterval(combatTimer)
     } else {
       char.health -= enemy.strength
+      console.log(char.health)
     }
 
     if (char.health <= 0) {

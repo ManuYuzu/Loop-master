@@ -42,7 +42,12 @@ const Character = function () {
     LEVELS.L1[this.y][this.x] = 2
     if (this.y === RESPAWNY && this.x === RESPAWNX) {
       spawnEnemies()
+      char.health += 6
+      console.log(char.health)
       console.log('Respawn')
     }
   }
-}
+
+//   let charHealth = document.getElementById('char-health').innerText
+//   charHealth.innerText = char.health
+ }
