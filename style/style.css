@@ -10,9 +10,12 @@ td {
 }
 
 .road {
-  background-color: rgb(206, 126, 50);
+  background-color: rgb(105, 64, 26);
 }
 
 .character {
   background-color: black;
+}
+.enemy{
+  background-color: red;
 }
