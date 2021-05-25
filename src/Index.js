@@ -1,51 +1,54 @@
 // GAME STATUS
 let gameTimer
+let speed = 300
+let speedCombat = 1000
 
 // CHARACTER CREATION
 const char = new Character()
 
 // COMBAT MOTOR
 let combatTimer
-let boxDiag = document.getElementById('dialogs')
 
 const combat = function (y, x) {
   clearInterval(gameTimer)
-  // boxDiag.innerText = `${enemies.name} salvaje ha aparecido.\n`
-  combatTimer = setInterval(function () {
-    // boxDiag.innerText += `Atacas y pierde ${char.strength} puntos de vida.\n`
-    let enemyInCombat = enemies.filter(enemie => {
-      return enemie.y === y && enemie.x === x
-    })[0]
-    enemyInCombat.health -= char.strength
-    if (enemyInCombat.health <= 0) {
-      // boxDiag.innerText += ' La rata ha muerto.\n'
+  let enemyInCombat = enemies.filter(enemy => { return enemy.y === y && enemy.x === x })[0]
+  showText(`${enemyInCombat.name} salvaje ha aparecido.\n`)
 
+  combatTimer = setInterval(function () {
+    enemyInCombat.health -= char.strength
+    showText(`Atacas, tu enemigo pierde ${char.strength} puntos de vida.\n`)
+
+    if (enemyInCombat.health <= 0) {
       char.gold += enemyInCombat.drop
+      showText(`La rata ha muerto. Recibes ${enemyInCombat.drop} monedas de oro\n`)
       map[enemyInCombat.y][enemyInCombat.x] = 1
       enemies.splice(enemies.indexOf(enemyInCombat), 1)
-      gameTimer = setInterval(game, 300)
       clearInterval(combatTimer)
+      gameTimer = setInterval(game, speed)
     } else {
       char.health -= enemyInCombat.strength
       charHealth.innerText = char.health
-      // boxDiag.innerText += ` La rata te ataca y pierdes ${enemies.strength} puntos de vida.\n`
+      showText(`La rata te ataca y pierdes ${enemies.strength} puntos de vida.\n`)
     }
+
     if (char.health <= 0) {
       clearInterval(combatTimer)
       gameOver()
     }
-  }, 600)
+  }, speedCombat)
 }
 
 // START GAME FUNCTION
 function game () {
   drawBoard()
   loadInterface()
+  char.findEnemy()
   char.moveCharacter()
 
   // RESPAWN
   if (char.y === char.startY && char.x === char.startX) {
     char.loop++
+    char.health += 20
     spawnEnemies()
     console.log('Respawn, another lap')
   }
@@ -62,7 +65,7 @@ function startGame () {
   char.startPosition()
   loadInterface()
   spawnEnemies()
-  gameTimer = setInterval(game, 300)
+  gameTimer = setInterval(game, speed)
 }
 
 // START GAME

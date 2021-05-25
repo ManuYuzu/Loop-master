@@ -1,10 +1,11 @@
 // CHAR-INFO
 let charName = document.getElementById('char-name')
-
-
 let charHealth = document.getElementById('char-health')
-let charGold = document.getElementById('char-gold')
 let charStrength = document.getElementById('char-strength')
+let charGold = document.getElementById('char-gold')
+
+let boxDiag = document.getElementById('dialogs')
+boxDiag.innerText = ''
 
 function loadInterface () {
   charName.innerText = char.name
@@ -15,7 +16,6 @@ function loadInterface () {
 
 // DRAWBOARD FUNCTION
 function drawBoard () {
-  // BOARD ACT
   map.forEach((row, r) => {
     row.forEach((col, c) => {
       const rowHTML = document.querySelector(`.row${r + 1}`)
@@ -40,6 +40,15 @@ function drawBoard () {
       }
     })
   })
+}
+
+function showText (text) {
+  if (boxDiag.length === 0) {
+    boxDiag.innerText = text
+  } else {
+    boxDiag.innerText += text
+  }
+  boxDiag.scrollTop = boxDiag.scrollHeight
 }
 
 // SHOP Interface
