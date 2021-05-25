@@ -26,3 +26,6 @@ const LEVELS = {
 // RESPAWN COORDINATES
 const RESPAWNY = 5
 const RESPAWNX = 8
+
+let level = 1
+let map = LEVELS[`L${level}`]
