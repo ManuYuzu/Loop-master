@@ -103,3 +103,40 @@ td {
   margin-left: 5vw;
   margin-right: 5vw;
 }
+/* *****************PRUEBAS CSS KARIM*************** */
+.menu-screen-wrapper{
+  width:800px;
+  height: 600px;
+  background-color: #bb33dd;
+  position: relative;
+}
+
+
+.menu-wrapper{
+  width: 360px;
+  height: 360px;
+  position: absolute;
+  top: 60px;
+  right: 220px;
+  left: 220px;
+  bottom: 120px;
+  background-color: aquamarine;
+  text-align: center;
+
+}
+.menu-button{
+  width: 180px;
+  height: 80px;
+  display: block;
+  margin:20px 90px;
+}
+.game-title{
+  width: 460px;
+  height: 80px;
+  position: absolute;
+  background-color: blue;
+  top:480px;
+  right: 170px;
+  left:170px,
+  
+}
