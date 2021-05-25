@@ -140,3 +140,27 @@ td {
   left:170px,
   
 }
+/* OPTION MENU KARIM */
+.option-wrapper{
+  width: 800px;
+  height: 600px;
+  position: relative;
+  background-color: #bb33dd;
+}
+.options{
+  width: 360px;
+  height: 360px;
+  position: absolute;
+  top: 60px;
+  right: 220px;
+  left: 220px;
+  bottom: 120px;
+  background-color: aquamarine;
+  text-align: center;
+}
+.option-button{
+  width: 180px;
+  height: 80px;
+  display: block;
+  margin:40px 90px;
+}
