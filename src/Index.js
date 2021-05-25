@@ -10,44 +10,59 @@ let charHealth = document.getElementById('char-health')
 
 // ENEMIES RANDOM SPAWN
 let path = []
-for (let i = 0; i < LEVELS.L1.length; i++) {
-  for (let j = 0; j < LEVELS.L1[i].length; j++) {
-    if (LEVELS.L1[i][j] === 1) {
-      path.push({postY: i, postX: j})
+function randomSpawn () {
+  for (let i = 0; i < LEVELS.L1.length; i++) {
+    for (let j = 0; j < LEVELS.L1[i].length; j++) {
+      if (LEVELS.L1[i][j] === 1) {
+        path.push({ postY: i, postX: j })
+      }
     }
   }
-} // console.log(path)
+}
+randomSpawn()
 
-let enemSpawn = Math.floor(Math.random() * path.length)
-console.log(path[enemSpawn])
-let enemy = new EnemyMaker(path[enemSpawn])
-
+// ENEMIES SPAWN
+let enemies = []
+// ENEMIES RESPAWN FOR EACH LOOP
+function spawnEnemies () {
+  for (let i = 0; i < char.loop; i++) {
+  enemSpawn = Math.floor(Math.random() * path.length)
+  enemies.push(new EnemyMaker(path[enemSpawn]))
+  enemies[i].StartPosition()
+  randomSpawn()
+  }
+}
 // COMBAT MOTOR
 let combatTimer
 let boxDiag = document.getElementById('dialogs')
 
-const combat = function () {
+const combat = function (y, x) {
   clearInterval(gameTimer)
-  boxDiag.innerText = `${enemy.name} salvaje ha aparecido.\n`
+  // boxDiag.innerText = `${enemies.name} salvaje ha aparecido.\n`
   combatTimer = setInterval(function () {
-    boxDiag.innerText += `Atacas y pierde ${char.strength} puntos de vida.\n`
-    enemy.health -= char.strength
-    if (enemy.health <= 0) {
-      boxDiag.innerText += ' La rata ha muerto.\n'
-      char.gold += enemy.drop
-      LEVELS.L1[enemy.y][enemy.x] = 1
+    // boxDiag.innerText += `Atacas y pierde ${char.strength} puntos de vida.\n`
+    let enemyInCombat = enemies.filter(enemie => {
+      return enemie.y === y && enemie.x === x
+    })[0]
+    enemyInCombat.health -= char.strength
+    if (enemyInCombat.health <= 0) {
+      // boxDiag.innerText += ' La rata ha muerto.\n'
+
+      char.gold += enemyInCombat.drop
+      LEVELS.L1[enemyInCombat.y][enemyInCombat.x] = 1
+      enemies.splice(enemies.indexOf(enemyInCombat), 1)
       gameTimer = setInterval(game, 300)
       clearInterval(combatTimer)
     } else {
-      char.health -= enemy.strength
+      char.health -= enemyInCombat.strength
       charHealth.innerText = char.health
-      boxDiag.innerText += ` La rata te ataca y pierdes ${enemy.strength} puntos de vida.\n`
+      // boxDiag.innerText += ` La rata te ataca y pierdes ${enemies.strength} puntos de vida.\n`
     }
     if (char.health <= 0) {
       clearInterval(combatTimer)
       gameOver()
     }
-  }, 1500)
+  }, 600)
 }
 
 // DRAWBOARD FUNCTION
@@ -86,13 +101,6 @@ function drawBoard () {
   charGold.innerText = char.gold
 }
 
-// ENEMIES RESPAWN FOR EACH LOOP
-function spawnEnemies () {
-  console.log('hi')
-  enemy = new EnemyMaker(path[enemSpawn])
-  enemy.StartPosition()
-}
-
 // START GAME FUNCTION
 function game () {
   drawBoard()
@@ -101,7 +109,7 @@ function game () {
 
 // START GAME
 char.StartPosition()
-enemy.StartPosition()
+spawnEnemies()
 let gameTimer = setInterval(game, 300)
 
 // GAME OVER FUNCTION

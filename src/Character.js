@@ -6,8 +6,9 @@ const Character = function () {
   this.previousX = 0
   this.strength = 5
   this.name = 'Tanuki'
-  this.health = 20
+  this.health = 200
   this.gold = 0
+  this.loop = 1
 
   // CHARACTER START POSITION
   this.StartPosition = function () {
@@ -34,21 +35,20 @@ const Character = function () {
       this.previousX = this.x
       this.y--
     } else if (LEVELS.L1[this.y][this.x + 1] === 3 && this.x + 1 !== this.previousX) {
-      combat()
+      combat(this.y, this.x + 1)
     } else if (LEVELS.L1[this.y + 1][this.x] === 3 && this.y + 1 !== this.previousY) {
-      combat()
+      combat(this.y + 1, this.x)
     } else if (LEVELS.L1[this.y][this.x - 1] === 3 && this.x - 1 !== this.previousX) {
-      combat()
+      combat(this.y, this.x - 1)
     } else if (LEVELS.L1[this.y - 1][this.x] === 3 && this.y - 1 !== this.previousY) {
-      combat()
+      combat(this.y - 1, this.x)
     }
     LEVELS.L1[this.y][this.x] = 2
 
-    // RESPAWN ENEMIES
+    // RESPAWN
     if (this.y === RESPAWNY && this.x === RESPAWNX) {
+      this.loop++
       spawnEnemies()
-      char.health += 4
-      console.log(char.health)
       console.log('Respawn, another lap')
     }
   }
