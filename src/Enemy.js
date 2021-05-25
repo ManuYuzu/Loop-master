@@ -1,9 +1,11 @@
 // ENEMY CONSTRUCTOR
-const EnemyMaker = function () {
-  this.y = 9
-  this.x = 11
+const EnemyMaker = function (coord) {
+  this.y = coord.postY
+  this.x = coord.postX
+  this.name = 'Rattata'
+  this.health = 12
   this.strength = 2
-  this.health = 10
+  this.drop = 1
 
   // ENEMY START POSITION
   this.StartPosition = function () {

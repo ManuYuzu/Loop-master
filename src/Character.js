@@ -5,7 +5,9 @@ const Character = function () {
   this.previousY = 0
   this.previousX = 0
   this.strength = 5
+  this.name = 'Tanuki'
   this.health = 20
+  this.gold = 0
 
   // CHARACTER START POSITION
   this.StartPosition = function () {
@@ -41,6 +43,7 @@ const Character = function () {
       combat()
     }
     LEVELS.L1[this.y][this.x] = 2
+
     // RESPAWN ENEMIES
     if (this.y === RESPAWNY && this.x === RESPAWNX) {
       spawnEnemies()
@@ -50,6 +53,3 @@ const Character = function () {
     }
   }
 }
-
-//   let charHealth = document.getElementById('char-health').innerText
-//   charHealth.innerText = char.health

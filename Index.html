@@ -6,10 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style/Style.css">
-  <script src="./src/Levels.js"></script>
+  <script src="./src/Levels.js"defer></script>
   <script src="./src/Enemy.js" defer></script>
   <script src="./src/Character.js" defer></script>
+  <script src="./src/Shop.js"defer></script>
+  <script src="./src/Interface.js"defer></script>
   <script src="./src/Index.js" defer></script>
+
   <title>LOOP MASTER</title>
 </head>
 
@@ -351,34 +354,40 @@
         <table class="char-table">
           <thead>
             <tr>
-              <th colspan="2">Character Info</th>
+              <th colspan="2">CHARACTER INFO</th>
             </tr>
           </thead>
           <tr>
-            <th>Name:</th>
+            <td>NAME:</td>
             <td id="char-name">Nameless</td>
           </tr>
           <tr>
-            <th>Health:</th>
+            <td>HEALTH:</td>
             <td id="char-health">0</td>
           </tr>
           <tr>
-            <th>Strength:</th>
+            <td>STRENGTH:</td>
             <td id="char-strength">0</td>
           </tr>
           <tr>
-            <th>Gold:</th>
+            <td>GOLD:</td>
             <td id="char-gold">0</td>
           </tr>
         </table>
       </section>
-      <section class="inventory">
-        <span>Inventory</span>
+      <section id="inventory">
+        <span>INVENTORY AND FIRST SHOP</span>
+       <button class="item" id="sword"><img src="" alt="" srcset="">Sword</button>
+       <button class="item" id="shield">Shield</button>
+       <button class="item" id="helmet">Helmet</button>
+       <button class="item" id="armor">Armor</button>
+       <button class="item" id="amulet">Amulet</button>
+       <button class="item" id="potion">Potion</button>
       </section>
     </aside>
   </div>
   <div class="bottom-wrapper">
-    <span>IN-GAME DIALOGS</span>
+    <div id="dialogs">IN-GAME DIALOGS AND OPTIONS</div>
   </div>
   <footer class="footer-wrapper">
     <button class="pause">PAUSE</button>

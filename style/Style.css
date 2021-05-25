@@ -57,7 +57,7 @@ td {
   background-color: #bb33dd;
 }
 
-.inventory {
+#inventory {
   height: 50%;
   background-color: aqua;
 }
@@ -69,6 +69,11 @@ td {
   margin-top: 3vw;
   height: 60px;
   background-color: silver;
+}
+
+#dialogs {
+  height: 60px;
+  overflow-y: scroll;
 }
 
 /* CHARACTER & ENEMIES*/
