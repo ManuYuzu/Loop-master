@@ -1,21 +1,22 @@
-
-// Combat
+// COMBAT MOTOR
 let combatTimer
+
 const combat = function () {
   clearInterval(gameTimer)
   combatTimer = setInterval(function () {
     enemy.health -= char.strength
-    console.log('puñalah')
-    console.log(enemy.health)
+    console.log('ATAQUE')
+    console.log('Enemy health: ' + enemy.health)
     if (enemy.health <= 0) {
+      console.log('ENEMIGO DERROTADO')
       LEVELS.L1[enemy.y][enemy.x] = 1
       gameTimer = setInterval(game, 300)
       clearInterval(combatTimer)
     } else {
       char.health -= enemy.strength
-      console.log(char.health)
+      console.log('ATAQUE ENEMIGO')
+      console.log('Character health: ' + char.health)
     }
-
     if (char.health <= 0) {
       clearInterval(combatTimer)
       gameOver()
@@ -23,13 +24,13 @@ const combat = function () {
   }, 1000)
 }
 
-// Main chr created
+// CHARACTER CREATION
 const char = new Character()
 
-// Enemies created
+// FIRST ENEMY CREATION
 let enemy = new EnemyMaker()
 
-// tabletop refresh
+// DRAWBOARD FUNCTION
 function drawBoard () {
   LEVELS.L1.forEach((row, r) => {
     row.forEach((col, c) => {
@@ -57,36 +58,35 @@ function drawBoard () {
   })
 }
 
-// Spawn new Enemies for each Loop
-
+// ENEMIES RESPAWN FOR EACH LOOP
 function spawnEnemies () {
   console.log('hi')
   enemy = new EnemyMaker()
   enemy.StartPosition()
 }
 
-function gameOver () {
-  clearInterval(gameTimer)
-  window.alert('GAME OVER')
-}
-
+// START GAME FUNCTION
 function game () {
   drawBoard()
   char.moveCharacter()
 }
 
-
-let button = document.getElementsByClassName('pause')[0]
-
-
-
-// ejecucion
+// START GAME
 char.StartPosition()
 enemy.StartPosition()
 let gameTimer = setInterval(game, 300)
 
+// GAME OVER FUNCTION
+function gameOver () {
+  clearInterval(gameTimer)
+  window.alert('GAME OVER')
+}
+
+// PAUSE / RE-START BUTTON CREATION
+let button = document.getElementsByClassName('pause')[0]
+
+// PAUSE / RE-START BUTTON FUNCTION
 let paused = false
-console.log(paused)
 button.addEventListener('click', function () {
   if (!paused) {
     clearInterval(gameTimer)
@@ -94,12 +94,13 @@ button.addEventListener('click', function () {
     button.classList.remove('pause')
     button.classList.add('start')
     button.innerText = 'START'
+    console.log('JUEGO PAUSADO')
   } else {
     gameTimer = setInterval(game, 300)
     button.classList.remove('start')
     button.classList.add('pause')
     button.innerText = 'PAUSE'
+    console.log('JUEGO REANUDADO')
   }
   paused = !paused
-  console.log(paused)
 })

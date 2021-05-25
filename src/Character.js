@@ -1,3 +1,4 @@
+// CHARACTER CONSTRUCTOR
 const Character = function () {
   this.y = 5
   this.x = 8
@@ -6,13 +7,14 @@ const Character = function () {
   this.strength = 5
   this.health = 20
 
-  // Chr start position
+  // CHARACTER START POSITION
   this.StartPosition = function () {
     LEVELS.L1[this.y][this.x] = 2
   }
-  // Chr moving in path
+  // CHARACTER MOVEMENT MOTOR
   this.moveCharacter = function () {
     LEVELS.L1[this.y][this.x] = 1
+    // CHARACTER FIND PATH OR ENEMY
     if (LEVELS.L1[this.y][this.x + 1] === 1 && this.x + 1 !== this.previousX) {
       this.previousY = this.y
       this.previousX = this.x
@@ -29,7 +31,6 @@ const Character = function () {
       this.previousY = this.y
       this.previousX = this.x
       this.y--
-      // Chr finds an enemy
     } else if (LEVELS.L1[this.y][this.x + 1] === 3 && this.x + 1 !== this.previousX) {
       combat()
     } else if (LEVELS.L1[this.y + 1][this.x] === 3 && this.y + 1 !== this.previousY) {
@@ -40,14 +41,15 @@ const Character = function () {
       combat()
     }
     LEVELS.L1[this.y][this.x] = 2
+    // RESPAWN ENEMIES
     if (this.y === RESPAWNY && this.x === RESPAWNX) {
       spawnEnemies()
-      char.health += 6
+      char.health += 4
       console.log(char.health)
-      console.log('Respawn')
+      console.log('Respawn, another lap')
     }
   }
+}
 
 //   let charHealth = document.getElementById('char-health').innerText
 //   charHealth.innerText = char.health
- }

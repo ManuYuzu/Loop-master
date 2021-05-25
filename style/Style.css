@@ -1,11 +1,20 @@
+/* BODY */
 body {
   background-color: rgb(173, 151, 124);
 }
 
+/* HEADER*/
 h1 {
   text-align: center;
+  margin-bottom: -15px;
 }
 
+h2 {
+  text-align: center;
+  font-size: 20px;
+}
+
+/* MAIN-WRAPPER*/
 .main-wrapper {
   height: 374px;
   position: relative;
@@ -13,11 +22,13 @@ h1 {
   margin-right: 5vw;
 }
 
+/* TABLE-BOARD */
+.game-wrapper {
+  display: inline-block;
+}
+
 .board {
   background-color: darkgreen;
-  /* margin-left: 5vw;
-  margin-right: 5vw;
-  margin-bottom: 5vw; */
   border-collapse: collapse;
 }
 
@@ -30,29 +41,7 @@ td {
   background-color: rgb(105, 64, 26);
 }
 
-.character {
-  background-color: black;
-}
-.enemy{
-  background-color: red;
-}
-
-.pause {
-  background-color: #DD3366;
-  color: white;
-  border-radius: 20px;
-}
-
-.start {
-  background-color:#bb33dd;
-  color: white;
-  border-radius: 20px;
-}
-
-.game-wrapper {
-  display: inline-block;
-}
-
+/* ASIDE-WRAPPER */
 .aside-wrapper {
   width: 300px;
   height: 374px;
@@ -73,6 +62,7 @@ td {
   background-color: aqua;
 }
 
+/* BOTTOM-WRAPPER */
 .bottom-wrapper {
   margin-left: 5vw;
   margin-right: 5vw;
@@ -81,6 +71,28 @@ td {
   background-color: silver;
 }
 
+/* CHARACTER & ENEMIES*/
+.character {
+  background-color: black;
+}
+.enemy{
+  background-color: red;
+}
+
+/* EVENTS */
+.pause {
+  background-color: #DD3366;
+  color: white;
+  border-radius: 20px;
+}
+
+.start {
+  background-color:#bb33dd;
+  color: white;
+  border-radius: 20px;
+}
+
+/* FOOTER */
 .footer-wrapper {
   margin-top: 2vh;
   margin-left: 5vw;
